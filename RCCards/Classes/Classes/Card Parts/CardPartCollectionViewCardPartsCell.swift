@@ -30,7 +30,6 @@ open class CardPartCollectionViewCardPartsCell : UICollectionViewCell {
     }
 
     public func setupCardParts(_ cardParts:[CardPartView]) {
-
         self.cardParts = cardParts
         
         var prevCardPart: UIView = contentView

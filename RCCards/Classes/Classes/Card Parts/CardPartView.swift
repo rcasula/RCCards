@@ -12,14 +12,14 @@ public protocol CardPartView {
 	
 	var margins: UIEdgeInsets { get set }
     
-    var view : UIView! { get }
+    var view : UIView { get }
 	
 	var viewController: UIViewController? { get }
 }
 
 extension CardPartView {
     
-    public var view: UIView! {
+    public var view: UIView {
         get {
             return self as! UIView
         }

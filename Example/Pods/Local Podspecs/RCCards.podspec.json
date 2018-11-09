@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "summary": "iOS Cards UI framework.",
   "description": "RCCards is an iOS Cards UI framework.",
-  "homepage": "https://github.com/robcas/RCCards",
+  "homepage": "https://github.com/robcas3/RCCards",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,7 +12,7 @@
     "Roberto Casula": "rcasula3@gmail.com"
   },
   "source": {
-    "git": "https://github.com/robcas/RCCards.git",
+    "git": "https://github.com/robcas3/RCCards.git",
     "tag": "0.1.0"
   },
   "swift_version": "4.2",

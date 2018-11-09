@@ -1,6 +1,6 @@
 # RCCards
 
-[![CI Status](https://img.shields.io/travis/Roberto Casula/RCCards.svg?style=flat)](https://travis-ci.org/Roberto Casula/RCCards)
+[![CI Status](https://img.shields.io/travis/robcas3/RCCards.svg?style=flat)](https://travis-ci.org/robcas3/RCCards)
 [![Version](https://img.shields.io/cocoapods/v/RCCards.svg?style=flat)](https://cocoapods.org/pods/RCCards)
 [![License](https://img.shields.io/cocoapods/l/RCCards.svg?style=flat)](https://cocoapods.org/pods/RCCards)
 [![Platform](https://img.shields.io/cocoapods/p/RCCards.svg?style=flat)](https://cocoapods.org/pods/RCCards)
