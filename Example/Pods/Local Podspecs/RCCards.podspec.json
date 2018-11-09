@@ -1,0 +1,42 @@
+{
+  "name": "RCCards",
+  "version": "0.1.0",
+  "summary": "iOS Cards UI framework.",
+  "description": "RCCards is an iOS Cards UI framework.",
+  "homepage": "https://github.com/robcas/RCCards",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Roberto Casula": "rcasula3@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/robcas/RCCards.git",
+    "tag": "0.1.0"
+  },
+  "swift_version": "4.2",
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source_files": "RCCards/Classes/**/*",
+  "resource_bundles": {
+    "RCCards": [
+      "RCCards/Assets/*.xcassets"
+    ]
+  },
+  "dependencies": {
+    "RxSwift": [
+      "~> 4.0"
+    ],
+    "RxCocoa": [
+      "~> 4.0"
+    ],
+    "RxDataSources": [
+      "~> 3.0"
+    ],
+    "RxGesture": [
+      "~> 2.0"
+    ]
+  }
+}

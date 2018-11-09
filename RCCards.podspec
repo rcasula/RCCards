@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'RCCards'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of RCCards.'
+  s.summary          = 'iOS Cards UI framework.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,25 +18,30 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+  RCCards is an iOS Cards UI framework.
                        DESC
 
-  s.homepage         = 'https://github.com/Roberto Casula/RCCards'
+  s.homepage         = 'https://github.com/robcas/RCCards'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Roberto Casula' => 'rcasula3@gmail.com' }
-  s.source           = { :git => 'https://github.com/Roberto Casula/RCCards.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/robcas/RCCards.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.swift_version = '4.2'
+  s.ios.deployment_target = '10.0'
 
   s.source_files = 'RCCards/Classes/**/*'
   
-  # s.resource_bundles = {
-  #   'RCCards' => ['RCCards/Assets/*.png']
-  # }
+  s.resource_bundles = {
+    'RCCards' => ['RCCards/Assets/*.xcassets']
+  }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'RxSwift', '~> 4.0'
+  s.dependency 'RxCocoa', '~> 4.0'
+  s.dependency 'RxDataSources', '~> 3.0'
+  s.dependency 'RxGesture', '~> 2.0'
 end
