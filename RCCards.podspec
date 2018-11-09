@@ -44,4 +44,5 @@ Pod::Spec.new do |s|
   s.dependency 'RxCocoa', '~> 4.0'
   s.dependency 'RxDataSources', '~> 3.0'
   s.dependency 'RxGesture', '~> 2.0'
+  s.dependency 'SnapKit', '~> 4.0'
 end

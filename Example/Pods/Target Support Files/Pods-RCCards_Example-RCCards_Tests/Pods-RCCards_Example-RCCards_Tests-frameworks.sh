@@ -153,12 +153,28 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/DeepDiff/DeepDiff.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RCCards/RCCards.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Nimble-Snapshots/Nimble_Snapshots.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Quick/Quick.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/DeepDiff/DeepDiff.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RCCards/RCCards.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Nimble-Snapshots/Nimble_Snapshots.framework"

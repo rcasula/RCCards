@@ -7,18 +7,22 @@
 //
 
 import UIKit
+import SnapKit
+
 
 open class CardCell : UICollectionViewCell {
     
     var cardContentView : UIView
     var cardContentConstraints = [NSLayoutConstraint]()
-    var topBottomMarginConstraints = [NSLayoutConstraint]()
+//    var topBottomMarginConstraints = [NSLayoutConstraint]()
+    var topMarginConstraint: Constraint?
+    var bottomMarginConstraint: Constraint?
+    
     
     private var currentSize = CGSize.zero
     private var gradientLayer = CAGradientLayer()
 
     override init(frame: CGRect) {
-        
         cardContentView = UIView()
         cardContentView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -39,22 +43,37 @@ open class CardCell : UICollectionViewCell {
         contentView.addSubview(cardContentView)
         contentView.backgroundColor = UIColor.white
         
-        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[cardContentView]|",
-                                                                  options: [],
-                                                                  metrics: nil,
-                                                                  views: ["cardContentView" : cardContentView]))
-        
-        let metrics = ["topInset": CardParts.theme.cardCellMargins.top, "bottomInset": CardParts.theme.cardCellMargins.bottom]
-        topBottomMarginConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-topInset-[cardContentView]-bottomInset-|",
-                                                                    options: [],
-                                                                    metrics: metrics,
-                                                                    views: ["cardContentView" : cardContentView])
-        contentView.addConstraints(topBottomMarginConstraints)
+        contentView.snp.makeConstraints { make in
+            if #available(iOS 11.0, *) {
+                make.edges.equalTo(self.safeAreaInsets)
+            } else {
+                make.edges.equalTo(self)
+            }
+        }
+
+        cardContentView.snp.makeConstraints { [weak self] make in
+            guard let sSelf = self else { return }
+            if #available(iOS 11.0, *) {
+                make.leading.equalTo(sSelf.safeAreaInsets)
+                make.trailing.equalTo(sSelf.safeAreaInsets)
+            } else {
+                make.leading.equalTo(sSelf)
+                make.trailing.equalTo(sSelf)
+            }
+            sSelf.topMarginConstraint = make.top.equalTo(contentView).offset(CardParts.theme.cardCellMargins.top).constraint
+            sSelf.bottomMarginConstraint = make.bottom.equalTo(contentView).offset(CardParts.theme.cardCellMargins.bottom).constraint
+        }
         contentView.layer.insertSublayer(gradientLayer, at: 0)
     }
     
+    
+    
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    open override func awakeFromNib() {
+        super.awakeFromNib()
     }
     
     deinit {
@@ -117,22 +136,26 @@ open class CardCell : UICollectionViewCell {
     
     func requiresNoTopBottomMargins(_ noTopBottomMargins: Bool) {
         
-        contentView.removeConstraints(topBottomMarginConstraints)
+//        contentView.removeConstraints(topBottomMarginConstraints)
         
         if noTopBottomMargins {
-            topBottomMarginConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[cardContentView]|",
-                                                                        options: [],
-                                                                        metrics: nil,
-                                                                        views: ["cardContentView" : cardContentView])
+//            topBottomMarginConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[cardContentView]|",
+//                                                                        options: [],
+//                                                                        metrics: nil,
+//                                                                        views: ["cardContentView" : cardContentView])
+            topMarginConstraint?.update(offset: 0)
+            bottomMarginConstraint?.update(offset: 0)
         } else {
-            topBottomMarginConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-9-[cardContentView]-12-|",
-                                                                        options: [],
-                                                                        metrics: nil,
-                                                                        views: ["cardContentView" : cardContentView])
+//            topBottomMarginConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-9-[cardContentView]-12-|",
+//                                                                        options: [],
+//                                                                        metrics: nil,
+//                                                                        views: ["cardContentView" : cardContentView])
+            topMarginConstraint?.update(offset: 9)
+            bottomMarginConstraint?.update(offset: 12)
         }
         
-        contentView.addConstraints(topBottomMarginConstraints)
-        setNeedsLayout()
+//        contentView.addConstraints(topBottomMarginConstraints)
+//        setNeedsLayout()
     }
     
     func requiresTransparentCard(transparentCard: Bool) {
