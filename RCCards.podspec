@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-  RCCards is an iOS Cards UI framework.
+  RCCards is an iOS Cards UI framework inspired by CardParts.
                        DESC
 
   s.homepage         = 'https://github.com/robcas3/RCCards'
@@ -44,5 +44,6 @@ Pod::Spec.new do |s|
   s.dependency 'RxCocoa', '~> 4.0'
   s.dependency 'RxDataSources', '~> 3.0'
   s.dependency 'RxGesture', '~> 2.0'
+  s.dependency 'DeepDiff', '~> 1.3'
   s.dependency 'SnapKit', '~> 4.0'
 end

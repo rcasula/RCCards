@@ -28,6 +28,22 @@ extension NoTopBottomMarginsCardTrait {
 	}
 }
 
+public protocol TopAccentViewCardTrait {
+    
+    func topAccentHeight() -> CGFloat
+    func topAccentColor() -> UIColor
+}
+
+extension TopAccentViewCardTrait {
+    
+    func topAccentHeight() -> CGFloat {
+        return 16.0
+    }
+    
+    func topAccentColor() -> UIColor {
+        return .white
+    }
+}
 
 public protocol TransparentCardTrait {
 	

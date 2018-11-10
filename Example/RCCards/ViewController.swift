@@ -11,7 +11,8 @@ import RCCards
 import RxSwift
 import DeepDiff
 
-protocol RCCustomCard: RoundedCardTrait, ShadowCardTrait, NoTopBottomMarginsCardTrait {}
+protocol RCCustomCard: RoundedCardTrait, ShadowCardTrait,
+                        NoTopBottomMarginsCardTrait, TopAccentViewCardTrait {}
 
 extension RCCustomCard {
     
@@ -53,8 +54,20 @@ class ModelCard: CardPartsViewController, RCCustomCard {
         setupCardParts([titlePart, textPart])
     }
     
+    func topAccentHeight() -> CGFloat {
+        return 20
+    }
+    
+    func topAccentColor() -> UIColor {
+        return .red
+    }
     
 }
+
+//class TopBarColoredCard: CardPartsViewController: RCCustomCard {
+//
+//    var
+//}
 
 struct Model: Equatable, Hashable {
     var title: String? = nil
@@ -109,6 +122,14 @@ class ViewController: UIViewController, UICollectionViewDataSource {
 //            .share(replay: 1)
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: { (_) in
+            self.invalidateLayout()
+            self.collectionView.reloadSections(IndexSet(integer: 0))
+        }, completion: nil)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         
         self.randomizeData()
@@ -137,6 +158,14 @@ class ViewController: UIViewController, UICollectionViewDataSource {
 //                      text: Lorem.sentences(Int.random(in: 0...10)))]
 //        collectionView.reloadData()
         
+    }
+    
+    public func invalidateLayout() {
+        DispatchQueue.main.async { [weak self] in
+            let context = UICollectionViewFlowLayoutInvalidationContext()
+            context.invalidateFlowLayoutAttributes = false
+            self?.layout.invalidateLayout(with: context)
+        }
     }
     
     

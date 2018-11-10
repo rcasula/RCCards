@@ -1,5 +1,5 @@
 //
-//  WeBusTheme.swift
+//  ExampleTheme.swift
 //  WeBus
 //
 //  Created by Roberto Casula on 29/06/18.
@@ -11,7 +11,7 @@ import RCCards
 
 
 
-public struct WeBusTheme: CardPartsTheme {
+public struct ExampleTheme: CardPartsTheme {
     public var buttonCornerRadius: CGFloat = 5
     
     

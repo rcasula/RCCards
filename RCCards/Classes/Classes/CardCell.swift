@@ -12,12 +12,20 @@ import SnapKit
 
 open class CardCell : UICollectionViewCell {
     
-    var cardContentView : UIView
+    var cardContentView: UIView
     var cardContentConstraints = [NSLayoutConstraint]()
 //    var topBottomMarginConstraints = [NSLayoutConstraint]()
+    var cardTopAccentView: UIView
     var topMarginConstraint: Constraint?
     var bottomMarginConstraint: Constraint?
+    var topAccentHeightConstraint: Constraint?
     
+    private var topAccentHeight: CGFloat = 0
+    private var topAccentBackgroundColor: UIColor = .clear {
+        didSet {
+            cardTopAccentView.backgroundColor = topAccentBackgroundColor
+        }
+    }
     
     private var currentSize = CGSize.zero
     private var gradientLayer = CAGradientLayer()
@@ -25,6 +33,9 @@ open class CardCell : UICollectionViewCell {
     override init(frame: CGRect) {
         cardContentView = UIView()
         cardContentView.translatesAutoresizingMaskIntoConstraints = false
+        
+        cardTopAccentView = UIView()
+        cardTopAccentView.translatesAutoresizingMaskIntoConstraints = false
         
         super.init(frame: frame)
         
@@ -40,6 +51,7 @@ open class CardCell : UICollectionViewCell {
             contentView.layer.shadowOpacity = 0.9
         }
         
+        contentView.addSubview(cardTopAccentView)
         contentView.addSubview(cardContentView)
         contentView.backgroundColor = UIColor.white
         
@@ -49,6 +61,22 @@ open class CardCell : UICollectionViewCell {
             } else {
                 make.edges.equalTo(self)
             }
+        }
+        
+        cardTopAccentView.snp.makeConstraints { [weak self] make in
+            guard let sSelf = self else { return }
+            if #available(iOS 11.0, *) {
+                make.leading.equalTo(sSelf.safeAreaInsets)
+                make.trailing.equalTo(sSelf.safeAreaInsets)
+                make.top.equalTo(sSelf.safeAreaInsets)
+            } else {
+                make.leading.equalTo(sSelf)
+                make.trailing.equalTo(sSelf)
+                make.top.equalTo(sSelf)
+            }
+            sSelf.topAccentHeightConstraint = make.height
+                                                  .equalTo(sSelf.topAccentHeight)
+                                                  .constraint
         }
 
         cardContentView.snp.makeConstraints { [weak self] make in
@@ -60,8 +88,18 @@ open class CardCell : UICollectionViewCell {
                 make.leading.equalTo(sSelf)
                 make.trailing.equalTo(sSelf)
             }
-            sSelf.topMarginConstraint = make.top.equalTo(contentView).offset(CardParts.theme.cardCellMargins.top).constraint
-            sSelf.bottomMarginConstraint = make.bottom.equalTo(contentView).offset(CardParts.theme.cardCellMargins.bottom).constraint
+//            sSelf.topMarginConstraint = make.top
+//                                            .equalTo(contentView)
+//                                            .offset(CardParts.theme.cardCellMargins.top)
+//                                            .constraint
+            sSelf.topMarginConstraint = make.top
+                                            .equalTo(cardTopAccentView.snp.bottom)
+                                            .offset(CardParts.theme.cardCellMargins.top)
+                                            .constraint
+            sSelf.bottomMarginConstraint = make.bottom
+                                               .equalTo(contentView)
+                                               .offset(CardParts.theme.cardCellMargins.bottom)
+                                               .constraint
         }
         contentView.layer.insertSublayer(gradientLayer, at: 0)
     }
@@ -136,26 +174,28 @@ open class CardCell : UICollectionViewCell {
     
     func requiresNoTopBottomMargins(_ noTopBottomMargins: Bool) {
         
-//        contentView.removeConstraints(topBottomMarginConstraints)
-        
         if noTopBottomMargins {
-//            topBottomMarginConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[cardContentView]|",
-//                                                                        options: [],
-//                                                                        metrics: nil,
-//                                                                        views: ["cardContentView" : cardContentView])
             topMarginConstraint?.update(offset: 0)
             bottomMarginConstraint?.update(offset: 0)
         } else {
-//            topBottomMarginConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-9-[cardContentView]-12-|",
-//                                                                        options: [],
-//                                                                        metrics: nil,
-//                                                                        views: ["cardContentView" : cardContentView])
             topMarginConstraint?.update(offset: 9)
             bottomMarginConstraint?.update(offset: 12)
         }
+    }
+    
+    func addTopAccent(of height: CGFloat, color: UIColor) {
+        self.topAccentHeight = height
         
-//        contentView.addConstraints(topBottomMarginConstraints)
-//        setNeedsLayout()
+        self.topAccentHeightConstraint?.deactivate()
+        
+        cardTopAccentView.snp.makeConstraints { [weak self] make in
+            guard let sSelf = self else { return }
+            sSelf.topAccentHeightConstraint = make.height
+                .equalTo(sSelf.topAccentHeight)
+                .constraint
+        }
+        
+        topAccentBackgroundColor = color
     }
     
     func requiresTransparentCard(transparentCard: Bool) {
@@ -189,7 +229,10 @@ open class CardCell : UICollectionViewCell {
     
     func setCornerRadius(radius: CGFloat) {
         contentView.layer.cornerRadius = radius
+        cardTopAccentView.layer.cornerRadius = radius
         gradientLayer.cornerRadius = radius
+        
+        cardTopAccentView.roundCorners([.topLeft, .topRight], radius: radius)
     }
     
     func addLongGestureRecognizer(minimumPressDuration: CFTimeInterval, delegate: CardPartsLongPressGestureRecognizerDelegate) {
@@ -202,4 +245,6 @@ open class CardCell : UICollectionViewCell {
         super.updateConstraints()
     }
 }
+
+
 
