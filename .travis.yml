@@ -4,7 +4,6 @@
 
 osx_image: xcode10
 language: swift
-cache: cocoapods
 podfile: Example/Podfile
 script:
 - set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/RCCards.xcworkspace -scheme RCCards-Example -sdk iphonesimulator9.3 ONLY_ACTIVE_ARCH=NO | xcpretty
