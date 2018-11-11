@@ -36,25 +36,29 @@ extension RCCustomCard {
     }
 }
 
-class ModelCard: CardPartsViewController, RCCustomCard {
-    func onEditButtonTap() {
-        debugPrint("TEST EDIT BUTTON")
-    }
+class ModelCard: RCCardPartsView, RCCustomCard {
     
     var viewModel = BehaviorSubject<Model>(value: Model())
     var titlePart = CardPartTitleView(type: .titleOnly)
     var textPart = CardPartTextView(type: .normal)
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//        titlePart.label.numberOfLines = 0
+//
+//        viewModel.asObservable().subscribe(onNext: { [weak self] model in
+//            self?.titlePart.title = model.title
+//            self?.textPart.text = model.text
+//        }).disposed(by: bag)
+//
+//        setupCardParts([titlePart, textPart])
+//    }
+    
+    func setup(model: Model) {
         titlePart.label.numberOfLines = 0
-        
-        viewModel.asObservable().subscribe(onNext: { [weak self] model in
-            self?.titlePart.title = model.title
-            self?.textPart.text = model.text
-        }).disposed(by: bag)
-        
+        self.titlePart.title = model.title
+        self.textPart.text = model.text
         setupCardParts([titlePart, textPart])
     }
     
@@ -67,11 +71,6 @@ class ModelCard: CardPartsViewController, RCCustomCard {
     }
     
 }
-
-//class TopBarColoredCard: CardPartsViewController: RCCustomCard {
-//
-//    var
-//}
 
 struct Model: Equatable, Hashable {
     var title: String? = nil
@@ -183,7 +182,7 @@ class ViewController: UIViewController, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let model = data[indexPath.item]
         let controller = ModelCard()
-        controller.viewModel.onNext(model)
+        controller.setup(model: model)
         let cell = collectionView.dequeueReusableCardCell(for: indexPath, cardController: controller,
                                                           parentController: self)
         

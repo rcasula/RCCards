@@ -15,6 +15,11 @@ public protocol CardController : NSObjectProtocol {
 	func viewController() -> UIViewController
 }
 
+public protocol RCCard: NSObjectProtocol {
+    var view: UIView { get }
+    func setupCardParts(_ cardParts:[CardPartView])
+}
+
 
 public protocol NoTopBottomMarginsCardTrait {
 	
