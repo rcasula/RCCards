@@ -2,8 +2,10 @@
 # * https://www.objc.io/issues/6-build-tools/travis-ci/
 # * https://github.com/supermarin/xcpretty#usage
 
-osx_image: xcode10
+osx_image: xcode10.1
 language: swift
+xcode_workspace: Example/RCCards.xcworkspace
+xcode_scheme: RCCards-Example
 podfile: Example/Podfile
 script:
 - set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/RCCards.xcworkspace -scheme RCCards-Example -sdk iphonesimulator9.3 ONLY_ACTIVE_ARCH=NO | xcpretty
