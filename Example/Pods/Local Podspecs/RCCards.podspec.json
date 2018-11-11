@@ -1,6 +1,6 @@
 {
   "name": "RCCards",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "summary": "iOS Cards UI framework.",
   "description": "RCCards is an iOS Cards UI framework inspired by CardParts.",
   "homepage": "https://github.com/robcas3/RCCards",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/robcas3/RCCards.git",
-    "tag": "0.1.0"
+    "tag": "0.1.1"
   },
   "swift_version": "4.2",
   "platforms": {
@@ -39,10 +39,10 @@
       "~> 2.0"
     ],
     "DeepDiff": [
-      "~> 1.3"
+      "~> 1.0"
     ],
     "SnapKit": [
-      "~> 4.2"
+      "~> 4.0"
     ]
   }
 }

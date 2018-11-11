@@ -13,23 +13,25 @@ PODS:
     - FBSnapshotTestCase (~> 2.0)
     - Nimble (~> 7.0)
   - Quick (1.2.0)
-  - RCCards (0.1.0):
-    - DeepDiff (~> 1.3)
+  - RCCards (0.1.1):
+    - DeepDiff (~> 1.0)
     - RxCocoa (~> 4.0)
     - RxDataSources (~> 3.0)
     - RxGesture (~> 2.0)
     - RxSwift (~> 4.0)
-    - SnapKit (~> 4.2)
-  - RxCocoa (4.3.1):
+    - SnapKit (~> 4.0)
+  - RxAtomic (4.4.0)
+  - RxCocoa (4.4.0):
     - RxSwift (~> 4.0)
   - RxDataSources (3.1.0):
     - Differentiator (~> 3.0)
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
-  - RxGesture (2.0.1):
-    - RxCocoa (~> 4.3.1)
-    - RxSwift (~> 4.3.1)
-  - RxSwift (4.3.1)
+  - RxGesture (2.1.0):
+    - RxCocoa (~> 4.4.0)
+    - RxSwift (~> 4.4.0)
+  - RxSwift (4.4.0):
+    - RxAtomic (~> 4.4)
   - SnapKit (4.2.0)
 
 DEPENDENCIES:
@@ -47,6 +49,7 @@ SPEC REPOS:
     - Nimble
     - Nimble-Snapshots
     - Quick
+    - RxAtomic
     - RxCocoa
     - RxDataSources
     - RxGesture
@@ -64,11 +67,12 @@ SPEC CHECKSUMS:
   Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
   Nimble-Snapshots: f5459b5b091678dc942d03ec4741cacb58ba4a52
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
-  RCCards: 9a106c003a6d4af1288537291b94416383161b56
-  RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
+  RCCards: eb4f14e51015578e63e8068f59e7880c592d3687
+  RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
+  RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
   RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
-  RxGesture: 26ede4ed13ffc6336d29dbd9a8dff229bdb72de7
-  RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
+  RxGesture: 7f6dfb45dbde06e618c24442d38493e3144f2c95
+  RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
 
 PODFILE CHECKSUM: f4be514e1d5df428a05cd2959880668eee40ad6c
