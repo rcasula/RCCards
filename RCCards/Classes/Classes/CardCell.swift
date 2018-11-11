@@ -1,6 +1,6 @@
 //
 //  CardCell.swift
-//  CardParts2
+//  CardParts
 //
 //  Created by Kier, Tom on 1/17/17.
 //  Copyright © 2017 Kier, Tom. All rights reserved.
@@ -14,7 +14,6 @@ open class CardCell : UICollectionViewCell {
     
     var cardContentView: UIView
     var cardContentConstraints = [NSLayoutConstraint]()
-//    var topBottomMarginConstraints = [NSLayoutConstraint]()
     var cardTopAccentView: UIView
     var topMarginConstraint: Constraint?
     var bottomMarginConstraint: Constraint?
@@ -24,6 +23,7 @@ open class CardCell : UICollectionViewCell {
     private var topAccentBackgroundColor: UIColor = .clear {
         didSet {
             cardTopAccentView.backgroundColor = topAccentBackgroundColor
+            cardTopAccentView.layer.backgroundColor = topAccentBackgroundColor.cgColor
         }
     }
     
@@ -39,6 +39,7 @@ open class CardCell : UICollectionViewCell {
         
         super.init(frame: frame)
         
+        contentView.clipsToBounds = true
         contentView.translatesAutoresizingMaskIntoConstraints = false
         
         contentView.backgroundColor = UIColor.white
@@ -88,10 +89,6 @@ open class CardCell : UICollectionViewCell {
                 make.leading.equalTo(sSelf)
                 make.trailing.equalTo(sSelf)
             }
-//            sSelf.topMarginConstraint = make.top
-//                                            .equalTo(contentView)
-//                                            .offset(CardParts.theme.cardCellMargins.top)
-//                                            .constraint
             sSelf.topMarginConstraint = make.top
                                             .equalTo(cardTopAccentView.snp.bottom)
                                             .offset(CardParts.theme.cardCellMargins.top)
@@ -229,10 +226,7 @@ open class CardCell : UICollectionViewCell {
     
     func setCornerRadius(radius: CGFloat) {
         contentView.layer.cornerRadius = radius
-        cardTopAccentView.layer.cornerRadius = radius
         gradientLayer.cornerRadius = radius
-        
-        cardTopAccentView.roundCorners([.topLeft, .topRight], radius: radius)
     }
     
     func addLongGestureRecognizer(minimumPressDuration: CFTimeInterval, delegate: CardPartsLongPressGestureRecognizerDelegate) {

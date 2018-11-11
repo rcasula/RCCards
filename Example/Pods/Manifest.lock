@@ -19,7 +19,7 @@ PODS:
     - RxDataSources (~> 3.0)
     - RxGesture (~> 2.0)
     - RxSwift (~> 4.0)
-    - SnapKit (~> 4.0)
+    - SnapKit (~> 4.2)
   - RxCocoa (4.3.1):
     - RxSwift (~> 4.0)
   - RxDataSources (3.1.0):
@@ -64,7 +64,7 @@ SPEC CHECKSUMS:
   Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
   Nimble-Snapshots: f5459b5b091678dc942d03ec4741cacb58ba4a52
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
-  RCCards: 359fa0dbc035f2b644932520ad4ecfb11e543778
+  RCCards: 9a106c003a6d4af1288537291b94416383161b56
   RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
   RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
   RxGesture: 26ede4ed13ffc6336d29dbd9a8dff229bdb72de7

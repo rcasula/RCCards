@@ -11,11 +11,10 @@ import SnapKit
 
 public extension UICollectionView {
     
-    public func dequeueReusableCardCell(withReuseIdentifier identifier: String,
-                                        for indexPath: IndexPath,
+    public func dequeueReusableCardCell(for indexPath: IndexPath,
                                         cardController: CardController,
                                         parentController: UIViewController) -> CardCell {
-        let cell = self.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! CardCell
+        let cell = self.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CardCell
 
         let viewController = cardController.viewController()
 
@@ -77,24 +76,13 @@ public extension UICollectionView {
                     make.leading.equalTo(cell.cardContentView).priority(900)
                     make.trailing.equalTo(cell.cardContentView).priority(900)
                 } else {
-                make.leading.equalTo(cell.cardContentView).priority(900)//.inset(CardParts.theme.cardCellMargins.left).priority(900)
-                    make.trailing.equalTo(cell.cardContentView).priority(900)//.inset(-CardParts.theme.cardCellMargins.right).priority(900)
+                    make.leading.equalTo(cell.cardContentView).priority(900)
+                    make.trailing.equalTo(cell.cardContentView).priority(900)
                 }
                 make.width.equalTo(width)
                 make.top.equalTo(cell.cardContentView)
                 make.bottom.equalTo(cell.cardContentView)
             }
-
-//            if getEditModeForIndexPath(indexPath: indexPath) {
-//                let editButton = UIButton(frame: CGRect(x: view.bounds.size.width - editButtonOffset - editButtonWidth, y: 0, width: editButtonWidth, height: editButtonHeight))
-//                editButton.setImage(UIImage(named: editButtonImage, in: Bundle(for: CardsViewController.self), compatibleWith: nil), for: .normal)
-//                editButton.addTargetClosure { _ in
-//                    if let editibalCardTrait = cardController as? EditableCardTrait {
-//                        editibalCardTrait.onEditButtonTap()
-//                    }
-//                }
-//                cell.contentView.addSubview(editButton)
-//            }
             if !hasParent {
                 viewController.didMove(toParent: parentController)
             }
@@ -107,8 +95,6 @@ public extension UICollectionView {
     }
     
     public func registerCardCell() {
-//        let nib = UINib(nibName: "RCCardCell", bundle: Bundle(for: RCCardCell.self))
-//        self.register(nib, forCellWithReuseIdentifier: "cell")
         self.register(CardCell.self, forCellWithReuseIdentifier: "cell")
     }
     

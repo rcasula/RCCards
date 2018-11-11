@@ -63,10 +63,27 @@ public protocol CardPartsTheme {
     var rightTitleColor: UIColor { get set }
     var rightDescriptionColor: UIColor { get set }
     var secondaryTitlePosition : CardPartSecondaryTitleDescPosition { get set }
+    
+    // EditMode
+    var editButtonOffset: CGFloat { get }
+    var editButtonHeight: CGFloat { get }
+    var editButtonWidth: CGFloat { get }
+    var editButtonImage: UIImage? { get }
 
 }
 
-extension CardPartsTheme {
+public extension CardPartsTheme {
+    public var editButtonOffset: CGFloat {
+        return 24
+    }
+    public var editButtonHeight: CGFloat { return 50 }
+    public var editButtonWidth: CGFloat { return 50 }
+    public var editButtonImage: UIImage? {
+        return UIImage(named: "budgets_disclosure_icon",
+                       in: Bundle(for: CardCell.self),
+                       compatibleWith: nil)
+    }
+    
     public func apply() {
         CardParts.theme = self
     }
@@ -128,7 +145,7 @@ public class CardPartsMintTheme: CardPartsTheme {
     public var rightTitleColor: UIColor = UIColor.color(17, green: 17, blue: 17)
     public var rightDescriptionColor: UIColor = UIColor.color(169, green: 169, blue: 169)
     public var secondaryTitlePosition : CardPartSecondaryTitleDescPosition = .right
-    
+
     public init() {
         
     }
@@ -191,7 +208,7 @@ public class CardPartsTurboTheme: CardPartsTheme {
     public var rightTitleColor: UIColor = UIColor.turboCardPartTitleColor
     public var rightDescriptionColor: UIColor = UIColor.turboGenericGreyTextColor
     public var secondaryTitlePosition : CardPartSecondaryTitleDescPosition = .center(amount: 0.0)
-
+    
     public init() {
         
     }

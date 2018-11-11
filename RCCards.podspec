@@ -45,5 +45,6 @@ Pod::Spec.new do |s|
   s.dependency 'RxDataSources', '~> 3.0'
   s.dependency 'RxGesture', '~> 2.0'
   s.dependency 'DeepDiff', '~> 1.3'
-  s.dependency 'SnapKit', '~> 4.0'
+  s.dependency 'SnapKit', '~> 4.2'
+  # s.dependency 'SwifterSwift', '~> 4.4'
 end

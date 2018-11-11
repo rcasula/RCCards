@@ -37,6 +37,10 @@ extension RCCustomCard {
 }
 
 class ModelCard: CardPartsViewController, RCCustomCard {
+    func onEditButtonTap() {
+        debugPrint("TEST EDIT BUTTON")
+    }
+    
     var viewModel = BehaviorSubject<Model>(value: Model())
     var titlePart = CardPartTitleView(type: .titleOnly)
     var textPart = CardPartTextView(type: .normal)
@@ -55,7 +59,7 @@ class ModelCard: CardPartsViewController, RCCustomCard {
     }
     
     func topAccentHeight() -> CGFloat {
-        return 20
+        return 14
     }
     
     func topAccentColor() -> UIColor {
@@ -180,7 +184,8 @@ class ViewController: UIViewController, UICollectionViewDataSource {
         let model = data[indexPath.item]
         let controller = ModelCard()
         controller.viewModel.onNext(model)
-        let cell = collectionView.dequeueReusableCardCell(withReuseIdentifier: "cell", for: indexPath, cardController: controller, parentController: self)
+        let cell = collectionView.dequeueReusableCardCell(for: indexPath, cardController: controller,
+                                                          parentController: self)
         
         return cell
     }
