@@ -37,14 +37,10 @@ Pod::Spec.new do |s|
     'RCCards' => ['RCCards/Assets/*.xcassets']
   }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
   s.dependency 'RxSwift', '~> 4.0'
   s.dependency 'RxCocoa', '~> 4.0'
   s.dependency 'RxDataSources', '~> 3.0'
   s.dependency 'RxGesture', '~> 2.0'
   s.dependency 'DeepDiff', '~> 1.3'
-  s.dependency 'SnapKit', '~> 4.2'
-  # s.dependency 'SwifterSwift', '~> 4.4'
+  s.dependency 'SnapKit', '~> 4.2.0'
 end
