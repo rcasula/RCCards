@@ -11,11 +11,11 @@ import SnapKit
 
 open class RCCardCell: UICollectionViewCell {
     
-    var cardContentView: UIView
-    var cardTopAccentView: UIView
-    var topMarginConstraint: Constraint?
-    var bottomMarginConstraint: Constraint?
-    var topAccentHeightConstraint: Constraint?
+    public var cardContentView: UIView
+    public var cardTopAccentView: UIView
+    public var topMarginConstraint: Constraint?
+    public var bottomMarginConstraint: Constraint?
+    public var topAccentHeightConstraint: Constraint?
     
     private var topAccentHeight: CGFloat = 0
     private var topAccentBackgroundColor: UIColor = .clear {
